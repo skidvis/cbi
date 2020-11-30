@@ -6,6 +6,7 @@ const app = {
             results: null,
             current: null,     
             tinyurl: null,   
+            buttonText: "Copy",
             groups: [
                 {name: "value", desc: "I have worth.", score: 0},
                 {name: "security", desc: "I am safe.", score: 0},
@@ -176,6 +177,18 @@ const app = {
             }
 
             return `color: ${color}`;
+        }, 
+        CopyUrl(){
+            var copyText = document.getElementById("tinyurl");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            this.buttonText = "Copied!";
         }
     }
 }
