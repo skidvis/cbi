@@ -158,7 +158,7 @@ const app = {
             });            
         }, 
         GetUrl(){
-            var baseUrl = "http://127.0.0.1:8000";
+            var baseUrl = "http://www.corebeliefsurvey.com";
             var theUrl = `http://tinyurl.com/api-create.php?url=${baseUrl}/?results=${this.results}`;
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
