@@ -39,7 +39,7 @@ const app = {
                 {q: "If I’m not careful with my money, I might end up with nothing.", worth: -1, group: "security", value: null},
                 {q: "I choose my old, familiar ways of doing things over risking the unexpected.", worth: -1, group: "security", value: null},
                 {q: "I feel uneasy when I go very far from home alone.", worth: -1, group: "security", value: null},                
-                {q: "I perform many task well.", worth: 2, group: "performance", value: null},
+                {q: "I perform many tasks well.", worth: 2, group: "performance", value: null},
                 {q: "Doing some things comes easy for me.", worth: 2, group: "performance", value: null},
                 {q: "I am a competent person, as capable as most people.", worth: 2, group: "performance", value: null},
                 {q: "I can learn new skills if I try.", worth: 2, group: "performance", value: null},
@@ -132,9 +132,8 @@ const app = {
     watch:{
         results(){
             if(this.questions[0].value == null){
-                this.questions = this.results;
-            }            
-            this.GetScores();
+                this.groups = this.results;
+            }                        
         }
     },
     methods: {
@@ -144,7 +143,8 @@ const app = {
                 this.current = this.questions[this.currentId];
             }else{
                 this.current = null;
-                this.results = Base64.encode(JSON.stringify(this.questions));
+                this.GetScores();                
+                this.results = Base64.encode(JSON.stringify(this.groups));
                 this.tinyurl = this.GetUrl();
             }
         }, 
@@ -158,7 +158,7 @@ const app = {
             });            
         }, 
         GetUrl(){
-            var baseUrl = "http://www.corebeliefsurvey.com";
+            var baseUrl = "http://127.0.0.1:8000";//"http://www.corebeliefsurvey.com";
             var theUrl = `http://tinyurl.com/api-create.php?url=${baseUrl}/?results=${this.results}`;
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
