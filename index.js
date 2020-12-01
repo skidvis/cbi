@@ -128,6 +128,11 @@ const app = {
         var query = window.location.search.split('=');
         if(query.length > 1){
             this.results = JSON.parse(Base64.decode(query[1]));
+
+            gtag('event', 'linked_visit', {
+                'event_category' : 'engagement',
+                'event_label' : window.location.search
+            });
         }        
     }, 
     watch:{
