@@ -147,6 +147,11 @@ const app = {
                 this.GetScores();                
                 this.results = Base64.encode(JSON.stringify(this.groups));
                 this.tinyurl = this.GetUrl();
+
+                gtag('event', 'survey_complete', {
+                    'event_category' : 'engagement',
+                    'event_label' : this.tinyurl
+                });
             }
         }, 
         GetScores(){
@@ -189,6 +194,7 @@ const app = {
             document.execCommand("copy");
 
             this.buttonText = "Copied!";
+            gtag('event', 'share');
         }
     }
 }
